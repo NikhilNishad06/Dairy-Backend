@@ -13,7 +13,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://dairy-frontend-kohl.vercel.app/', // Your frontend URL
+  origin: 'https://dairy-frontend-kohl.vercel.app', // Your frontend URL
   credentials: true
 }));
 app.use(express.json());
