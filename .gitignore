@@ -1,3 +1,19 @@
+<<<<<<< HEAD
 .env
 .env.local
 .env.* 
+=======
+# environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# node modules
+node_modules
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+>>>>>>> 4746ba5a2de6252a895691d585b4edfeeae44af7

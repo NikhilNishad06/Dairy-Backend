@@ -20,6 +20,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
+<<<<<<< HEAD
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
@@ -33,6 +34,10 @@ app.use(cors({
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
+=======
+  origin: 'https://dairy-frontend-kohl.vercel.app', // Your frontend URL
+  credentials: true
+>>>>>>> 4746ba5a2de6252a895691d585b4edfeeae44af7
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
