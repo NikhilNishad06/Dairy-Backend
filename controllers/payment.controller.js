@@ -11,10 +11,8 @@ const razorpayInstance = (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KE
 
 exports.createOrder = async (req, res) => {
     try {
-        if (!razorpayInstance) {
-            console.error("Razorpay keys are not configured in the environment.");
-            return res.status(500).json({ success: false, message: "Payment gateway is not configured" });
-        }
+        // Proceed even if razorpayInstance is not configured for development/testing
+        // (It will fall back to dummy orders in the creation block below)
 
         const { amount, currency = "INR", receipt, address, userId } = req.body;
 
@@ -71,7 +69,11 @@ exports.createOrder = async (req, res) => {
         let rzpOrder;
 
         try {
-            rzpOrder = await razorpayInstance.orders.create(options);
+            if (razorpayInstance) {
+                rzpOrder = await razorpayInstance.orders.create(options);
+            } else {
+                throw new Error("Razorpay instance not initialized (Keys missing).");
+            }
         } catch (rzpErr) {
             console.error("Razorpay order creation failed, likely due to invalid keys:", rzpErr);
 
